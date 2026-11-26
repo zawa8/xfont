@@ -106,24 +106,24 @@ Full metadata scheme in `pysk/pipeline_design.md` §8.
 ## Build
 
     # Full pipeline (needs FontForge)
-    fontforge -script pysk/xi52py/main.py
+    fontforge -script pysk/utfpy/main.py
 
     # List numbered steps
-    fontforge -script pysk/xi52py/main.py --list
+    fontforge -script pysk/utfpy/main.py --list
 
     # List phase names
-    fontforge -script pysk/xi52py/main.py --list-phases
+    fontforge -script pysk/utfpy/main.py --list-phases
 
     # Run one phase (src|asc|utf|mono|meta|gen)
 
-    fontforge -script pysk/xi52py/main.py --phase src
-    fontforge -script pysk/xi52py/main.py --phase asc
+    fontforge -script pysk/utfpy/main.py --phase src
+    fontforge -script pysk/utfpy/main.py --phase asc
 
     # Run a single step
-    fontforge -script pysk/xi52py/main.py --only 1
+    fontforge -script pysk/utfpy/main.py --only 1
 
     # Dry run (print without executing)
-    fontforge -script pysk/xi52py/main.py --dry-run
+    fontforge -script pysk/utfpy/main.py --dry-run
 
 6 phases (19 steps):
   src   copy xe fonts as-is (no glyph copy)

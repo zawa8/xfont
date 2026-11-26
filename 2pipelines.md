@@ -46,18 +46,18 @@ each script designer reviews their own font:
 
 **phases (run via main.py):**
 ```
-fontforge -script pysk/xi52py/main.py --phase asc   # build asc fonts
-fontforge -script pysk/xi52py/main.py --phase utf   # build utf fonts (unicode ranges)
-fontforge -script pysk/xi52py/main.py --phase mono  # build mono fonts
-fontforge -script pysk/xi52py/main.py --phase meta  # update font metadata
-fontforge -script pysk/xi52py/main.py --phase gen   # generate TTF + WOFF2
+fontforge -script pysk/utfpy/main.py --phase asc   # build asc fonts
+fontforge -script pysk/utfpy/main.py --phase utf   # build utf fonts (unicode ranges)
+fontforge -script pysk/utfpy/main.py --phase mono  # build mono fonts
+fontforge -script pysk/utfpy/main.py --phase meta  # update font metadata
+fontforge -script pysk/utfpy/main.py --phase gen   # generate TTF + WOFF2
 ```
 
 **key scripts:**
 - `pysk/xi52py/glyph_copy/build_asc_fonts.py` — asc phase
 - `pysk/xi52py/glyph_copy/build_utf_fonts.py` — utf phase (xi38 only, refs identity matrix)
-- `pysk/xi52py/copy_utf_unicode_blocks.py` — copy utf blocks to other 9 xi38 fonts
-- `pysk/xi52py/verify_utf.py` — verify utf refs are not collapsed
+- `pysk/utfpy/copy_utf_unicode_blocks.py` — copy utf blocks to other 9 xi38 fonts
+- `pysk/utfpy/werify_utf.py` — verify utf refs are not collapsed
 
 **outputs:**
 - `sfd/xi38sfd/xi38asc/` — xi38 asc SFDs
@@ -75,6 +75,6 @@ fontforge -script pysk/xi52py/main.py --phase gen   # generate TTF + WOFF2
 | script | purpose |
 |--------|---------|
 | `pysk/notopy/gen_notottf_csv.py` | regenerate noto_map_38.csv from NamesList.txt |
-| `pysk/xi52py/gen_asc_to_utf_json.py` | regenerate asc-to-utf.json from NamesList.txt |
+| `pysk/utfpy/gen_asc_to_utf_json.py` | regenerate asc-to-utf.json from NamesList.txt |
 | `pysk/notopy/noto_copy.py` | pipeline 1 main script |
-| `pysk/xi52py/main.py` | pipeline 2 main script |
+| `pysk/utfpy/main.py` | pipeline 2 main script |

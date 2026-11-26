@@ -5,6 +5,10 @@ on:
     branches: [main]
     paths:
       - "pysk/xi52py/**"
+      - "pysk/utfpy/**"
+      - "pysk/monopy/**"
+      - "pysk/metapy/**"
+      - "pysk/ttfwofpy/**"
       - "pysk/notopy/**"
       - "sfdsrc/**"
       - ".github/workflows/build-xi52.yml"
@@ -30,33 +34,34 @@ jobs:
 
       - name: Verify Python syntax
         run: |
-          python3 -m py_compile pysk/xi52py/main.py
-          python3 -m py_compile pysk/xi52py/prep_utf.py
-          python3 -m py_compile pysk/xi52py/copy_utf_unicode_blocks.py
-          python3 -m py_compile pysk/xi52py/verify_utf.py
-          python3 -m py_compile pysk/xi52py/p5generate.py
-          python3 -m py_compile pysk/xi52py/gen_asc_to_utf_json.py
+          python3 -m py_compile pysk/utfpy/main.py
+          python3 -m py_compile pysk/utfpy/prep_utf.py
+          python3 -m py_compile pysk/utfpy/copy_utf_unicode_blocks.py
+          python3 -m py_compile pysk/utfpy/werify_utf.py
+          python3 -m py_compile pysk/ttfwofpy/p5generate.py
+          python3 -m py_compile pysk/utfpy/gen_asc_to_utf_json.py
+          python3 -m py_compile pysk/x4py/notosans_maths_to_x4e.py
           python3 -m py_compile pysk/notopy/noto_copy.py
           python3 -m py_compile pysk/notopy/extract_noto_data.py
           python3 -m py_compile pysk/notopy/gen_noto_sheets.py
 
       - name: Sanity -- print pipeline
-        run: fontforge -script pysk/xi52py/main.py --list
+        run: fontforge -script pysk/utfpy/main.py --list
 
       - name: Run prep_utf (sfdsrc -> sfd xi38asc + xi38utf + xi52utf + unicode refs)
-        run: fontforge -script pysk/xi52py/prep_utf.py
+        run: fontforge -script pysk/utfpy/prep_utf.py
 
       - name: Copy unicode blocks to all xi38utf + xi52utf fonts
-        run: python3 pysk/xi52py/copy_utf_unicode_blocks.py
+        run: python3 pysk/utfpy/copy_utf_unicode_blocks.py
 
       - name: Verify UTF references
-        run: fontforge -script pysk/xi52py/verify_utf.py
+        run: fontforge -script pysk/utfpy/werify_utf.py
 
       - name: Run mono phase
-        run: fontforge -script pysk/xi52py/main.py --phase mono
+        run: fontforge -script pysk/utfpy/main.py --phase mono
 
       - name: Update font metadata
-        run: fontforge -script pysk/xi52py/main.py --phase meta
+        run: fontforge -script pysk/utfpy/main.py --phase meta
 
       - name: Clean old fonts
         run: |
@@ -74,7 +79,7 @@ jobs:
           rm -f xnglofonts/woff2/xi38woff2/xi38mono/*.woff2
 
       - name: Generate TTF/WOFF2
-        run: fontforge -script pysk/xi52py/main.py --phase gen
+        run: fontforge -script pysk/utfpy/main.py --phase gen
 
       - name: Commit fonts to repo
         run: |

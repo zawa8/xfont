@@ -258,39 +258,39 @@ UniqueID, family/full/postscript names).
 
 Run the whole pipeline:
 
-    fontforge -script scripts/xi52py/main.py
+    fontforge -script pysk/utfpy/main.py
 
 List numbered steps:
 
-    fontforge -script scripts/xi52py/main.py --list
+    fontforge -script pysk/utfpy/main.py --list
 
 List phase names:
 
-    fontforge -script scripts/xi52py/main.py --list-phases
+    fontforge -script pysk/utfpy/main.py --list-phases
 
 Run one phase only (asc|utf|mono|meta|gen):
 
-    fontforge -script scripts/xi52py/main.py --phase asc
+    fontforge -script pysk/utfpy/main.py --phase asc
 
 Resume from a step:
 
-    fontforge -script scripts/xi52py/main.py --from N
+    fontforge -script pysk/utfpy/main.py --from N
 
 Run one step:
 
-    fontforge -script scripts/xi52py/main.py --only N
+    fontforge -script pysk/utfpy/main.py --only N
 
 Skip specific steps:
 
-    fontforge -script scripts/xi52py/main.py --skip 7,8,9
+    fontforge -script pysk/utfpy/main.py --skip 7,8,9
 
 Dry run (print without executing):
 
-    fontforge -script scripts/xi52py/main.py --dry-run
+    fontforge -script pysk/utfpy/main.py --dry-run
 
 Keep going after a failure:
 
-    fontforge -script scripts/xi52py/main.py --continue
+    fontforge -script pysk/utfpy/main.py --continue
 
 Each run writes `logs/build-info.txt` (git SHA, FontForge version,
 Python version, selected steps, timestamp).

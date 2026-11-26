@@ -80,8 +80,8 @@ glyphs. So:
 
 ## Files involved
 
-- `scripts/xi52py/glyph_copy/build_utf_fonts.py` — main builder
-- `scripts/xi52py/glyph_copy/build_sinhala_asc.py` — builds
+- `pysk/xi52py/glyph_copy/build_utf_fonts.py` — main builder
+- `pysk/xi52py/glyph_copy/build_sinhala_asc.py` — builds
   `xs38asc.sfd` from Noto Sinhala + English
 - `UNICODE_HINDI_ARRAY` — 128-entry offset → ASCII char map
   (Hindi-based, shared by 9 ranges)

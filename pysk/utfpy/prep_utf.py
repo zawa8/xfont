@@ -19,7 +19,7 @@ run:
 
 then:
   python3  pysk/utfpy/copy_utf_unicode_blocks.py
-  fontforge -script pysk/utfpy/verify_utf.py
+  fontforge -script pysk/utfpy/werify_utf.py
 """
 
 import fontforge
@@ -207,8 +207,8 @@ def main():
     log.info("\n" + "=" * 60)
     log.info("done. next steps:")
     log.info("  1. check xh38utf.sfd in FontForge (U+0915 etc.)")
-    log.info("  2. python3 pysk/xi52py/copy_utf_unicode_blocks.py")
-    log.info("  3. fontforge -script pysk/xi52py/verify_utf.py")
+    log.info("  2. python3 pysk/utfpy/copy_utf_unicode_blocks.py")
+    log.info("  3. fontforge -script pysk/utfpy/werify_utf.py")
     print(f"\nDone! Log: {log_file}")
 
 

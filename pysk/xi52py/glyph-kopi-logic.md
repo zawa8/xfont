@@ -162,7 +162,7 @@ When `action` is `keep` (or `manual` / `remove`), `apply_source()` returns `True
 Run via `main.py`:
 
 ```
-fontforge -script scripts/xi52py/main.py --phase asc
+fontforge -script pysk/utfpy/main.py --phase asc
 ```
 
 See `main.py` for the full 18-step pipeline.

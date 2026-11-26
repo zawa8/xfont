@@ -20,10 +20,10 @@ Version comes from the latest git tag (v1.2.0 -> "Version 1.2.0");
 falls back to "Version 1.000" if git is unavailable.
 
 Run via main.py (step 10, phase `meta`):
-    fontforge -script scripts/xi52py/main.py --phase meta
+    fontforge -script pysk/utfpy/main.py --phase meta
 
 Or standalone:
-    fontforge -script scripts/xi52py/update_font_metadata.py
+    fontforge -script pysk/metapy/update_font_metadata.py
 """
 
 import logging

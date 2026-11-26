@@ -128,7 +128,7 @@ update these when glyph assignments change:
 
 **regenerate json/csv from NamesList.txt**:
 ```bash
-python3 pysk/xi52py/gen_asc_to_utf_json.py   # regenerates sfdsrc/asc-to-utf.json
+python3 pysk/utfpy/gen_asc_to_utf_json.py   # regenerates sfdsrc/asc-to-utf.json
 python3 pysk/notopy/gen_notottf_csv.py        # regenerates noto_map_38.csv
 ```
 
@@ -166,7 +166,7 @@ log: `logs/prep_utf.log`
 ### step 2.2 — copy unicode blocks
 
 ```bash
-py pysk/xi52py/copy_utf_unicode_blocks.py
+py pysk/utfpy/copy_utf_unicode_blocks.py
 ```
 
 copies `StartChar: uni0904` ... to end-of-file  
@@ -175,7 +175,7 @@ from `xh38utf.sfd` → all other `*utf.sfd` files (xb38, xg38, ... xs38).
 ### step 2.3 — werify
 
 ```bash
-ffz pysk/xi52py/werify_utf.py
+ffz pysk/utfpy/werify_utf.py
 echo $?    # must be 0
 ```
 
@@ -184,7 +184,7 @@ expected: `824 ref glyphs, 0 collapsed` for all 10 fonts.
 ### step 2.4 — mono phase
 
 ```bash
-ffz pysk/xi52py/main.py --phase mono
+ffz pysk/utfpy/main.py --phase mono
 ```
 
 generates xi38mono and xi52mono (fixed-width, centered glyphs) from utf fonts.
@@ -192,7 +192,7 @@ generates xi38mono and xi52mono (fixed-width, centered glyphs) from utf fonts.
 ### step 2.5 — meta phase
 
 ```bash
-ffz pysk/xi52py/main.py --phase meta
+ffz pysk/utfpy/main.py --phase meta
 ```
 
 updates font family names and PostScript names (Google Fonts format) in all SFDs.
@@ -235,7 +235,7 @@ check unicode ranges + asc glyphs look correct for each script.
 ## pipeline 3 — sfdfinal → TTF/WOFF2
 
 ```bash
-ffz pysk/xi52py/p5generate.py
+ffz pysk/ttfwofpy/p5generate.py
 ```
 
 reads `sfdfinal/**/*.sfd` → generates:

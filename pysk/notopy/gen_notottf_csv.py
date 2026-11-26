@@ -10,7 +10,7 @@ Purpose: build pipeline copies the right Noto TTF glyph into each
 ASCII slot of each xi38asc.sfd font.
 
 run:
-  python3 pysk/xi52py/gen_notottf_csv.py
+  python3 pysk/notopy/gen_notottf_csv.py
 """
 
 import csv

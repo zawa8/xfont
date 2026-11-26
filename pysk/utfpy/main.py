@@ -32,7 +32,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-REPO_ROOT = HERE.parent.parent          # scripts/xi52py -> scripts -> repo root
+REPO_ROOT = HERE.parent.parent          # pysk/utfpy -> pysk -> repo root
 LOGS_DIR = REPO_ROOT / "logs"
 BUILD_INFO = LOGS_DIR / "build-info.txt"
 
@@ -43,7 +43,7 @@ BUILD_INFO = LOGS_DIR / "build-info.txt"
 
 def load(rel_path: str):
     """Import a script that lives at HERE/rel_path as its own module."""
-    path = HERE / rel_path
+    path = (HERE / rel_path).resolve()
     spec = importlib.util.spec_from_file_location(path.stem, path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -81,7 +81,7 @@ def run_u9scripts():
     Calls build_asc_fonts.py's functions directly,
     bypassing its argparse-based main().
     """
-    mod = load("glyph_copy/build_asc_fonts.py")
+    mod = load("../xi52py/glyph_copy/build_asc_fonts.py")
     csv_rows_38 = mod.read_csv(mod.CSV_PATH_38)
     csv_rows_52 = mod.read_csv(mod.CSV_PATH_52)
     with contextlib.ExitStack() as stack:
@@ -132,15 +132,15 @@ PIPELINE = [
     ("asc",  "[asc] build xi38asc + xi52asc, 9 scripts (G1-G5)",
              run_u9scripts),
     ("asc",  "[asc] build xi38asc + xi52asc, Sinhala",
-             run_main("glyph_copy/build_sinhala_asc.py")),
+             run_main("../xi52py/glyph_copy/build_sinhala_asc.py")),
 
     # ---- utf ----
     ("utf",  "[utf] xi38asc -> xi38utf (copy 128 + unicode refs)",
-             run_main("glyph_copy/build_utf_fonts.py")),
+             run_main("../xi52py/glyph_copy/build_utf_fonts.py")),
     ("utf",  "[utf] xi52asc -> xi52utf (copy + refs)",
-             run_main("copy_xi38utf_to_xi52utf.py")),
+             run_main("../xi52py/copy_xi38utf_to_xi52utf.py")),
     ("utf",  "[utf] add unicode-range refs to xi52utf",
-             run_main("add_unicode_ranges_utf_52.py")),
+             run_main("../xi52py/add_unicode_ranges_utf_52.py")),
 
     # ---- mono ----
     # xi38mono
@@ -164,17 +164,17 @@ PIPELINE = [
 
     # ---- gen ----
     ("gen",  "[gen] TTF/WOFF2 from xi38asc",
-             run_main("gen_xi38asc.py")),
+             run_main("../xi52py/gen_xi38asc.py")),
     ("gen",  "[gen] TTF/WOFF2 from xi38utf",
-             run_main("generatefonts/gen_xi38utf.py")),
+             run_main("../xi52py/generatefonts/gen_xi38utf.py")),
     ("gen",  "[gen] TTF/WOFF2 from xi52asc",
-             run_main("gen_xi52asc.py")),
+             run_main("../xi52py/gen_xi52asc.py")),
     ("gen",  "[gen] TTF/WOFF2 from xi52utf",
-             run_main("generatefonts/gen_xi52utf.py")),
+             run_main("../xi52py/generatefonts/gen_xi52utf.py")),
     ("gen",  "[gen] TTF/WOFF2 from xi38mono",
-             run_main("generate_mono_ttf_xi38.py")),
+             run_main("../xi52py/generate_mono_ttf_xi38.py")),
     ("gen",  "[gen] TTF/WOFF2 from xi52mono",
-             run_main("generate_mono_ttf.py")),
+             run_main("../xi52py/generate_mono_ttf.py")),
 ]
 
 

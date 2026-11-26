@@ -20,7 +20,7 @@ source ~/.bashrc
 ## Run Main Script
 proot-distro login ubuntu
 cd /data/data/com.termux/files/home/pff
-ffz pysk/xi52py/main.py
+ffz pysk/utfpy/main.py
 
 ## Script Structure
 - main.py runs 18 steps (step 1/18 to 18/18)
@@ -46,13 +46,13 @@ pkill -9 fontforge; pkill -9 python3
 ffz -version
 tail -20 /data/data/com.termux/files/home/pff/logs/*.log
 ls -la /data/data/com.termux/files/home/pff/pysk/xi52py/
-ffz pysk/xi52py/main.py 2>&1 | tee /tmp/full_run.log
+ffz pysk/utfpy/main.py 2>&1 | tee /tmp/full_run.log
 
 ## Important Paths
 - Termux home: /data/data/com.termux/files/home/
 - Ubuntu root: /root/
 - Project: /data/data/com.termux/files/home/pff/
-- Main script: pysk/xi52py/main.py
+- Main script: pysk/utfpy/main.py
 - Logs: logs/
 - Phone storage: /sdcard/
 

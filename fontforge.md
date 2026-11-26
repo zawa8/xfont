@@ -360,12 +360,12 @@ psMat.compose(m1, m2)           # combine two matrices
 | script | run with | purpose |
 |--------|----------|---------|
 | `pysk/notopy/noto_copy.py` | `ffz` | pipeline 1: noto TTF → notosfd |
-| `pysk/xi52py/prep_utf.py` | `ffz` | pipeline 2: sfdsrc → sfd (utf) |
-| `pysk/xi52py/copy_utf_unicode_blocks.py` | `py` | copy unicode blocks to all *utf.sfd |
-| `pysk/xi52py/verify_utf.py` | `ffz` | verify 0 collapsed refs |
-| `pysk/xi52py/main.py --phase mono` | `ffz` | generate mono fonts |
-| `pysk/xi52py/main.py --phase meta` | `ffz` | update font metadata |
-| `pysk/xi52py/p5generate.py` | `ffz` | pipeline 3: sfdfinal → TTF/WOFF2 |
-| `pysk/xi52py/gen_asc_to_utf_json.py` | `py` | regen asc-to-utf.json |
+| `pysk/utfpy/prep_utf.py` | `ffz` | pipeline 2: sfdsrc → sfd (utf) |
+| `pysk/utfpy/copy_utf_unicode_blocks.py` | `py` | copy unicode blocks to all *utf.sfd |
+| `pysk/utfpy/werify_utf.py` | `ffz` | verify 0 collapsed refs |
+| `pysk/utfpy/main.py --phase mono` | `ffz` | generate mono fonts |
+| `pysk/utfpy/main.py --phase meta` | `ffz` | update font metadata |
+| `pysk/ttfwofpy/p5generate.py` | `ffz` | pipeline 3: sfdfinal → TTF/WOFF2 |
+| `pysk/utfpy/gen_asc_to_utf_json.py` | `py` | regen asc-to-utf.json |
 | `pysk/notopy/extract_noto_data.py` | `ffz` | export noto glyph data to CSV |
 | `pysk/notopy/gen_noto_sheets.py` | `py` | CSV → Excel workbook |

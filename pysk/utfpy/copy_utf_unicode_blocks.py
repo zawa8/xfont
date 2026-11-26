@@ -11,7 +11,7 @@ Works because all xi38asc fonts share the same glyph names and
 encoding slots, so Refer lines are identical across fonts.
 
 run AFTER:
-  fontforge -script pysk/xi52py/main.py --phase utf
+  fontforge -script pysk/utfpy/main.py --phase utf
   (with build_utf_fonts.py modified to process only xh38utf.sfd)
 
 run:

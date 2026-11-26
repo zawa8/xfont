@@ -16,10 +16,10 @@ Unicode text in a script they know.
 
 See scripts/utf_design.md for the full philosophy.
 
-TTF/WOFF2 generation is separate (scripts/xi52py/generatefonts/gen_xi38utf.py).
+TTF/WOFF2 generation is separate (pysk/xi52py/generatefonts/gen_xi38utf.py).
 
 Run via main.py:
-    fontforge -script scripts/xi52py/main.py --phase utf
+    fontforge -script pysk/utfpy/main.py --phase utf
 """
 
 import fontforge
@@ -360,7 +360,7 @@ def main():
         create_utf_font(asc_name, utf_name)
 
     # step 2: add unicode ranges ONLY for xh38utf.sfd.
-    # pysk/xi52py/copy_utf_unicode_blocks.py propagates the unicode blocks
+    # pysk/utfpy/copy_utf_unicode_blocks.py propagates the unicode blocks
     # to the other 9 fonts (Refer lines are identical across all xi38 fonts).
     xh38_utf = utf_dir / "xh38utf.sfd"
     add_unicode_ranges(xh38_utf)

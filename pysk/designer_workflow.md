@@ -63,7 +63,7 @@ Example:
 **If FontForge installed (local):**
 
     cd pff
-    fontforge -script scripts/xi52py/main.py
+    fontforge -script pysk/utfpy/main.py
 
 **If no FontForge (CI):**
 

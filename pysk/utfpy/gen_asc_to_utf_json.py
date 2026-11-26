@@ -11,7 +11,7 @@ value is the hskii glyph string. we take its first char as the src ascii glyph.
 absent codepoint or <reserved> -> "clear".
 
 run from repo root:
-  python3 pysk/xi52py/gen_asc_to_utf_json.py
+  python3 pysk/utfpy/gen_asc_to_utf_json.py
 """
 
 import json
