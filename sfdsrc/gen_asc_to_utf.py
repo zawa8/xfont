@@ -1,3 +1,4 @@
+# fine_tune_by_claude
 """
 gen_asc_to_utf.py
 
@@ -9,7 +10,7 @@ import fontforge
 from pathlib import Path
 
 pff_root = Path.home() / "pff"
-noto_dir = pff_root / "notofonts"
+noto_dir = pff_root / "pysk" / "notopy"
 output_csv = pff_root / "sfdsrc" / "asc-to-utf.csv"
 
 SCRIPTS = [

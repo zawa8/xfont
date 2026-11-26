@@ -26,9 +26,9 @@ Build system for the xi52sfd / xi38sfd font families.
 
 pff/
 ├── sfdsrc/                    ← MASTER SOURCES (never overwritten)
-│   ├── xe52/
+│   ├── 52asc/
 │   │   └── xe52asc.sfd        English master source
-│   ├── xi38/
+│   ├── 38asc/
 │   │   ├── xh38asc.sfd        Hindi source (manually designed)
 │   │   ├── xb38asc.sfd        Bengali source (future)
 │   │   ├── xk38asc.sfd        Kannada source (future)
@@ -36,43 +36,43 @@ pff/
 │   ├── scripts/               ← future design scripts
 │   └── README.md
 ├── sfd/                        ← TARGETS (rebuilt each pipeline run)
-│   ├── xi52sfd/
-│   │   ├── xi52asc/
-│   │   ├── xi52utf/
-│   │   └── xi52mono/
-│   └── xi38sfd/
-│       ├── xi38asc/
-│       └── xi38utf/
-├── notofonts/                  ← Noto TTFs (fallback)
+│   ├── 52/
+│   │   ├── asc/
+│   │   ├── utf/
+│   │   └── mono/
+│   └── 38/
+│       ├── asc/
+│       └── utf/
+├── pysk/notopy/                  ← Noto TTFs (fallback)
 ├── scripts/                    ← pipeline scripts
 ├── logs/                       ← build logs + build-info.txt
 └── xnglofonts/
     ├── ttf/
-    │   ├── xi52ttf/
-    │   │   ├── xi52asc/
-    │   │   ├── xi52utf/
-    │   │   └── xi52mono/
-    │   └── xi38ttf/
-    │       ├── xi38asc/
-    │       └── xi38utf/
+    │   ├── 52/
+    │   │   ├── asc/
+    │   │   ├── utf/
+    │   │   └── mono/
+    │   └── 38/
+    │       ├── asc/
+    │       └── utf/
     └── woff2/
-        ├── xi52woff2/
-        │   ├── xi52asc/
-        │   ├── xi52utf/
-        │   └── xi52mono/
-        └── xi38woff2/
-            ├── xi38asc/
-            └── xi38utf/
+        ├── 52/
+        │   ├── asc/
+        │   ├── utf/
+        │   └── mono/
+        └── 38/
+            ├── asc/
+            └── utf/
 
 ```
 
 ### Sources (never overwritten)
-- `sfdsrc/xe52/xe52asc.sfd` — English master
-- `sfdsrc/xi38/*.sfd` — per-script sources (Hindi, Bengali, Kannada, ...)
+- `sfdsrc/52asc/xe52asc.sfd` — English master
+- `sfdsrc/38asc/*.sfd` — per-script sources (Hindi, Bengali, Kannada, ...)
 
 ### Targets (rebuilt every pipeline run)
-- `sfd/xi52sfd/xi52asc/*.sfd`
-- `sfd/xi38sfd/xi38asc/*.sfd`
+- `sfd/52/asc/*.sfd`
+- `sfd/38/asc/*.sfd`
 - `sfd/*/xi*utf/*.sfd`
 - `sfd/*/xi*mono/*.sfd`
 
@@ -98,17 +98,17 @@ pff/
 
 **`xi38` / `xi52` build:**
 - Per `sfdsrc/glyph_copy_xi38.csv` / `sfdsrc/glyph_copy_xi52.csv`
-- `xi38`: uses `xe38asc` + `sfdsrc/xi38/<script>38asc.sfd`
-- `xi52`: uses `xe52asc` + `sfdsrc/xi52/<script>52asc.sfd`
+- `xi38`: uses `xe38asc` + `sfdsrc/38asc/<script>38asc.sfd`
+- `xi52`: uses `xe52asc` + `sfdsrc/52asc/<script>52asc.sfd`
 
 See `sfdsrc/csv_details.md` for canonical source mapping.
 
 ### File naming
-- `sfd/xi52sfd/xi52asc/xh52asc.sfd`
-- `sfd/xi52sfd/xi52utf/xh52utf.sfd`
-- `sfd/xi52sfd/xi52mono/xh52mono.sfd`
-- `sfd/xi38sfd/xi38asc/xh38asc.sfd`
-- `sfd/xi38sfd/xi38utf/xh38utf.sfd`
+- `sfd/52/asc/xh52asc.sfd`
+- `sfd/52/utf/xh52utf.sfd`
+- `sfd/52/mono/xh52mono.sfd`
+- `sfd/38/asc/xh38asc.sfd`
+- `sfd/38/utf/xh38utf.sfd`
 
 Rule: **`FontName:` in each `.sfd` equals its filename stem**
 (`xh38asc.sfd` → `FontName: xh38asc`).
@@ -120,19 +120,19 @@ Note: `xv` → `xh` everywhere (`xh` = xNglohinDi).
 ## 2. Sources vs Targets
 
 ### Sources
-- `sfdsrc/xe52/xe52asc.sfd` — English master (feeds both xi38 and xi52)
-- `sfdsrc/xi38/*.sfd` — per-script sources, manually designed
-- `notofonts/*.ttf` — Noto fallback
+- `sfdsrc/52asc/xe52asc.sfd` — English master (feeds both xi38 and xi52)
+- `sfdsrc/38asc/*.sfd` — per-script sources, manually designed
+- `pysk/notopy/*.ttf` — Noto fallback
 
 ### Targets
-- `sfd/xi52sfd/xi52asc/*.sfd`
-- `sfd/xi38sfd/xi38asc/*.sfd`
+- `sfd/52/asc/*.sfd`
+- `sfd/38/asc/*.sfd`
 - `sfd/*/xi*utf/*.sfd`
 - `sfd/*/xi*mono/*.sfd`
 
 Python pipelines read `sfdsrc/` directly (no intermediate copy).
-`build_asc_fonts.py` opens `sfdsrc/xe52/xe52asc.sfd` and
-`sfdsrc/xi38/<script>38asc.sfd`, combines them per CSV, and writes
+`build_asc_fonts.py` opens `sfdsrc/52asc/xe52asc.sfd` and
+`sfdsrc/38asc/<script>38asc.sfd`, combines them per CSV, and writes
 `sfd/`. Missing `sfdsrc` source = hard error (designer must provide).
 
 ---
@@ -190,8 +190,8 @@ T,keep,keep,Sunny Spells T
 
 | Group | Letters | Count | Source |
 |-------|---------|-------|--------|
-| G1 | `k K z Z t T d D n p f b B m y r l w s S` | 20 | `ownsfd` (`sfdsrc/xi52/<script>52asc.sfd`) |
-| G2 | `x j J q Q v c C g G` | 10 | `xe52` (`sfdsrc/xi52/xe52asc.sfd`) |
+| G1 | `k K z Z t T d D n p f b B m y r l w s S` | 20 | `ownsfd` (`sfdsrc/52asc/<script>52asc.sfd`) |
+| G2 | `x j J q Q v c C g G` | 10 | `xe52` (`sfdsrc/52asc/xe52asc.sfd`) |
 | G3 | `N R a i u e o h L Y V W P F` | 14 | `xe52` |
 | G4 | `E I O U M X` | 6 | `xe52` |
 | G5 | `A H` | 2 | `xe52` |
@@ -202,9 +202,9 @@ Total: 20 + 10 + 14 + 6 + 2 = **52**
 
 | Group | Letters | Count | Source |
 |-------|---------|-------|--------|
-| G1 | `k K z Z t T d D n p f b B m y r l w s S` | 20 | `ownsfd` (`sfdsrc/xi38/<script>38asc.sfd`) |
+| G1 | `k K z Z t T d D n p f b B m y r l w s S` | 20 | `ownsfd` (`sfdsrc/38asc/<script>38asc.sfd`) |
 | G2 | `x j J q Q v c C g G` | 10 | `ownsfd` |
-| G3 | `N R a i u e o h L Y V W P F` | 14 | `xe38` (`sfdsrc/xi38/xe38asc.sfd`) |
+| G3 | `N R a i u e o h L Y V W P F` | 14 | `xe38` (`sfdsrc/38asc/xe38asc.sfd`) |
 | G4 | `E I O U M X` | 6 | `xe38` |
 | G5 | `A H` | 2 | `ownsfd` |
 
@@ -371,3 +371,5 @@ Removed in v1.3.0:
 
 - Non-Hindi scripts — G5 designs pending (per-script designers)
 - `koreanonlyw8asc.sfd`, `russianonlyw8asc.sfd` — rename + xi52 add
+
+<!-- fine_tune_by_claude -->

@@ -1,5 +1,6 @@
 #!/usr/bin/env fontforge
 # -*- coding: utf-8 -*-
+# fine_tune_by_claude
 """
 notosans_maths_to_x4e.py
 

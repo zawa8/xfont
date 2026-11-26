@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
 gen_notottf_csv.py
-Generate notofonts/notottf-x38ascsfd.csv from notofonts/NamesList.txt.
+Generate pysk/notopy/notottf-x38ascsfd.csv from pysk/notopy/NamesList.txt.
 
 The CSV maps each hskii ASCII glyph char to its Unicode codepoint
 in each of 10 Indic script Noto fonts.

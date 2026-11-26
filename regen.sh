@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# fine_tune_by_claude
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -9,5 +10,5 @@ if [ ! -x "$FFZ" ]; then
     exit 1
 fi
 
-"$FFZ" -script notofonts/fill_asc-to-utf-csv.py
+"$FFZ" -script pysk/notopy/fill_asc-to-utf-csv.py
 git diff --stat sfdsrc/asc-to-utf-generated.csv

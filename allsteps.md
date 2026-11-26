@@ -211,8 +211,8 @@ open `sfd/38/utf/xh38utf.sfd` and werify:
 
 ## [MANUAL D] — sfd → sfdfinal (copy + designer final rewiew)
 
-1. copy `sfd/38/` → `sfdfinal/xi38sfd/`
-2. copy `sfd/52/` → `sfdfinal/xi52sfd/`
+1. copy `sfd/38/` → `sfdfinal/38/`
+2. copy `sfd/52/` → `sfdfinal/52/`
 3. each designer opens their `sfdfinal/**/x*utf.sfd` in FontForge
 4. makes final glyph adzustments in unicode ranges if needed
 5. saves to `sfdfinal/`
@@ -351,3 +351,5 @@ pff/
 ├── pffsheets/             analysis worksheets (Excel)
 └── allsteps.md            this file
 ```
+
+<!-- fine_tune_by_claude -->

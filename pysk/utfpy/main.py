@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
 main.py -- xi52/xi38 build pipeline orchestrator
 
@@ -81,7 +82,7 @@ def run_u9scripts():
     Calls build_asc_fonts.py's functions directly,
     bypassing its argparse-based main().
     """
-    mod = load("../xi52py/glyph_copy/build_asc_fonts.py")
+    mod = load("glyph_copy/build_asc_fonts.py")
     csv_rows_38 = mod.read_csv(mod.CSV_PATH_38)
     csv_rows_52 = mod.read_csv(mod.CSV_PATH_52)
     with contextlib.ExitStack() as stack:
@@ -132,15 +133,15 @@ PIPELINE = [
     ("asc",  "[asc] build xi38asc + xi52asc, 9 scripts (G1-G5)",
              run_u9scripts),
     ("asc",  "[asc] build xi38asc + xi52asc, Sinhala",
-             run_main("../xi52py/glyph_copy/build_sinhala_asc.py")),
+             run_main("glyph_copy/build_sinhala_asc.py")),
 
     # ---- utf ----
     ("utf",  "[utf] xi38asc -> xi38utf (copy 128 + unicode refs)",
-             run_main("../xi52py/glyph_copy/build_utf_fonts.py")),
+             run_main("glyph_copy/build_utf_fonts.py")),
     ("utf",  "[utf] xi52asc -> xi52utf (copy + refs)",
-             run_main("../xi52py/copy_xi38utf_to_xi52utf.py")),
+             run_main("copy_xi38utf_to_xi52utf.py")),
     ("utf",  "[utf] add unicode-range refs to xi52utf",
-             run_main("../xi52py/add_unicode_ranges_utf_52.py")),
+             run_main("add_unicode_ranges_utf_52.py")),
 
     # ---- mono ----
     # xi38mono
@@ -164,17 +165,17 @@ PIPELINE = [
 
     # ---- gen ----
     ("gen",  "[gen] TTF/WOFF2 from xi38asc",
-             run_main("../xi52py/gen_xi38asc.py")),
+             run_main("../ttfwofpy/gen_xi38asc.py")),
     ("gen",  "[gen] TTF/WOFF2 from xi38utf",
-             run_main("../xi52py/generatefonts/gen_xi38utf.py")),
+             run_main("../ttfwofpy/generatefonts/gen_xi38utf.py")),
     ("gen",  "[gen] TTF/WOFF2 from xi52asc",
-             run_main("../xi52py/gen_xi52asc.py")),
+             run_main("../ttfwofpy/gen_xi52asc.py")),
     ("gen",  "[gen] TTF/WOFF2 from xi52utf",
-             run_main("../xi52py/generatefonts/gen_xi52utf.py")),
+             run_main("../ttfwofpy/generatefonts/gen_xi52utf.py")),
     ("gen",  "[gen] TTF/WOFF2 from xi38mono",
-             run_main("../xi52py/generate_mono_ttf_xi38.py")),
+             run_main("../ttfwofpy/generate_mono_ttf_xi38.py")),
     ("gen",  "[gen] TTF/WOFF2 from xi52mono",
-             run_main("../xi52py/generate_mono_ttf.py")),
+             run_main("../ttfwofpy/generate_mono_ttf.py")),
 ]
 
 

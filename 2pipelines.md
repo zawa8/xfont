@@ -54,15 +54,15 @@ fontforge -script pysk/utfpy/main.py --phase gen   # generate TTF + WOFF2
 ```
 
 **key scripts:**
-- `pysk/xi52py/glyph_copy/build_asc_fonts.py` — asc phase
-- `pysk/xi52py/glyph_copy/build_utf_fonts.py` — utf phase (xi38 only, refs identity matrix)
+- `pysk/utfpy/glyph_copy/build_asc_fonts.py` — asc phase
+- `pysk/utfpy/glyph_copy/build_utf_fonts.py` — utf phase (xi38 only, refs identity matrix)
 - `pysk/utfpy/copy_utf_unicode_blocks.py` — copy utf blocks to other 9 xi38 fonts
 - `pysk/utfpy/werify_utf.py` — verify utf refs are not collapsed
 
 **outputs:**
-- `sfd/xi38sfd/xi38asc/` — xi38 asc SFDs
-- `sfd/xi38sfd/xi38utf/` — xi38 utf SFDs (unicode ranges filled)
-- `sfd/xi52sfd/xi52utf/` — xi52 utf SFDs
+- `sfd/38/asc/` — xi38 asc SFDs
+- `sfd/38/utf/` — xi38 utf SFDs (unicode ranges filled)
+- `sfd/52/utf/` — xi52 utf SFDs
 - `xnglofonts/ttf/` — final TTF files
 - `xnglofonts/woff2/` — final WOFF2 files
 
@@ -78,3 +78,5 @@ fontforge -script pysk/utfpy/main.py --phase gen   # generate TTF + WOFF2
 | `pysk/utfpy/gen_asc_to_utf_json.py` | regenerate asc-to-utf.json from NamesList.txt |
 | `pysk/notopy/noto_copy.py` | pipeline 1 main script |
 | `pysk/utfpy/main.py` | pipeline 2 main script |
+
+<!-- fine_tune_by_claude -->

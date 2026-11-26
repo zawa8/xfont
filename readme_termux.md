@@ -45,7 +45,7 @@ ffz pysk/utfpy/main.py
 pkill -9 fontforge; pkill -9 python3
 ffz -version
 tail -20 /data/data/com.termux/files/home/pff/logs/*.log
-ls -la /data/data/com.termux/files/home/pff/pysk/xi52py/
+ls -la /data/data/com.termux/files/home/pff/pysk/utfpy/
 ffz pysk/utfpy/main.py 2>&1 | tee /tmp/full_run.log
 
 ## Important Paths
@@ -61,3 +61,5 @@ ffz pysk/utfpy/main.py 2>&1 | tee /tmp/full_run.log
 - Do NOT pass extra arguments like --list-phases to ffz
 - If script hangs, press Ctrl+C then run pkill -9 fontforge
 - Timeout is set to 3600 seconds (1 hour) for long runs
+
+<!-- fine_tune_by_claude -->

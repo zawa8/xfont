@@ -23,8 +23,8 @@ alias ffz='fontforge'
 
 ### run a python script with fontforge
 ```bash
-ffz pysk/xi52py/myscript.py          # shebang line: #!/usr/bin/env fontforge
-ffz -script pysk/xi52py/myscript.py  # explicit
+ffz pysk/utfpy/myscript.py          # shebang line: #!/usr/bin/env fontforge
+ffz -script pysk/utfpy/myscript.py  # explicit
 ```
 
 > **note**: fontforge bundles its own python. `pip install` must target
@@ -70,11 +70,11 @@ import shutil
 from pathlib import Path
 
 # copy one file
-shutil.copy2("sfdsrc/xi38/xh38asc.sfd", "sfd/xi38sfd/xi38asc/xh38asc.sfd")
+shutil.copy2("sfdsrc/38asc/xh38asc.sfd", "sfd/38/asc/xh38asc.sfd")
 
 # copy all *.sfd from one dir to another
 src = Path("sfdsrc/xi38")
-dst = Path("sfd/xi38sfd/xi38asc")
+dst = Path("sfd/38/asc")
 dst.mkdir(parents=True, exist_ok=True)
 for sfd in src.glob("*.sfd"):
     shutil.copy2(sfd, dst / sfd.name)
@@ -85,7 +85,7 @@ for sfd in src.glob("*.sfd"):
     shutil.copy2(sfd, dst / new_name)
 
 # clear a directory
-for f in Path("sfd/xi38sfd/xi38utf").glob("*.sfd"):
+for f in Path("sfd/38/utf").glob("*.sfd"):
     f.unlink()
 ```
 
@@ -308,9 +308,9 @@ f.close()
 import fontforge
 from pathlib import Path
 
-sfd_path  = Path("sfdfinal/xi38sfd/xi38utf/xh38utf.sfd")
-ttf_out   = Path("xnglofonts/ttf/xi38ttf/xi38utf/xh38utf.ttf")
-woff2_out = Path("xnglofonts/woff2/xi38woff2/xi38utf/xh38utf.woff2")
+sfd_path  = Path("sfdfinal/38/utf/xh38utf.sfd")
+ttf_out   = Path("xnglofonts/ttf/38/utf/xh38utf.ttf")
+woff2_out = Path("xnglofonts/woff2/38/utf/xh38utf.woff2")
 
 ttf_out.parent.mkdir(parents=True, exist_ok=True)
 woff2_out.parent.mkdir(parents=True, exist_ok=True)
@@ -369,3 +369,5 @@ psMat.compose(m1, m2)           # combine two matrices
 | `pysk/utfpy/gen_asc_to_utf_json.py` | `py` | regen asc-to-utf.json |
 | `pysk/notopy/extract_noto_data.py` | `ffz` | export noto glyph data to CSV |
 | `pysk/notopy/gen_noto_sheets.py` | `py` | CSV → Excel workbook |
+
+<!-- fine_tune_by_claude -->

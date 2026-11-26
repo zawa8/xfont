@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
 Script to copy Sinhala glyphs from Noto to xs38asc.sfd.
 Also copies 0x00-0x40, a,e,i,u,o,N, and E,I,M,L,O,P,U,V,W,X,Y from xe52asc.sfd.
@@ -46,7 +47,7 @@ from datetime import datetime
 
 # Paths
 script_dir = Path(__file__).parent
-pff_root = script_dir.parent.parent.parent  # glyph_copy/ is 2 levels deeper than xi52py/'s other scripts
+pff_root = script_dir.parent.parent.parent  # glyph_copy/ is 2 levels deeper than its parent folder's other scripts
 
 # Log
 log_dir = pff_root / "logs"
@@ -64,14 +65,14 @@ console.setLevel(logging.WARNING)
 logging.getLogger('').addHandler(console)
 
 # Sources
-noto_font_path = pff_root / "notofonts" / "NotoSansSinhala-Regular.ttf"
-english_sfd = pff_root / "sfdsrc/xi52/xe52asc.sfd"
+noto_font_path = pff_root / "pysk" / "notopy" / "NotoSansSinhala-Regular.ttf"
+english_sfd = pff_root / "sfdsrc/52asc/xe52asc.sfd"
 sfd_path = pff_root / "sfd/38/asc/xs38asc.sfd"
 
 # Output
 # font_repo removed (use pff_root)
-ttf_dir = pff_root / "xnglofonts/ttf/xi38ttf/xi38asc"
-woff2_dir = pff_root / "xnglofonts/woff2/xi38woff2/xi38asc"
+ttf_dir = pff_root / "xnglofonts/ttf/38/asc"
+woff2_dir = pff_root / "xnglofonts/woff2/38/asc"
 
 # Sinhala consonants from Noto
 # Format: {offset: hskii_char}

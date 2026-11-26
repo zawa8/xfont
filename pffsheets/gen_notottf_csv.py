@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
 gen_notottf_csv.py
-Generate notofonts/notottf-x38ascsfd.csv from notofonts/NamesList.txt.
+Generate pysk/notopy/notottf-x38ascsfd.csv from pysk/notopy/NamesList.txt.
 
 The CSV maps each hskii ASCII glyph char to its Unicode codepoint
 in each of 10 Indic script Noto fonts.
@@ -18,8 +19,8 @@ from pathlib import Path
 from collections import defaultdict
 
 pff_root   = Path(__file__).resolve().parents[2]
-NAMES_FILE = pff_root / "notofonts/NamesList.txt"
-CSV_OUT    = pff_root / "notofonts/notottf-x38ascsfd.csv"
+NAMES_FILE = pff_root / "pysk/notopy/NamesList.txt"
+CSV_OUT    = pff_root / "pysk/notopy/notottf-x38ascsfd.csv"
 
 # Script ranges → font prefix (CSV column order)
 SCRIPTS = [

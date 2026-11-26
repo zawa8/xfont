@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
 gen_asc_to_utf_json.py
-Generate sfdsrc/asc-to-utf.json from notofonts/NamesList.txt.
+Generate sfdsrc/asc-to-utf.json from pysk/notopy/NamesList.txt.
 
 NamesList.txt format per line:
   XXXX-value

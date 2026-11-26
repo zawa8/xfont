@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
-Generate TTF and WOFF2 from xi38utf SFD files.
-
-Reads sfd/38/utf/*.sfd and writes
-xnglofonts/ttf/xi38ttf/xi38utf/*.ttf and
-xnglofonts/woff2/xi38woff2/xi38utf/*.woff2.
-
-Pipeline position: phase `gen`, step 13.
-(Phase `utf`, steps 4-7, produce the *.sfd inputs via
-build_utf_fonts.py; this script turns those into usable fonts.)
+Generate TTF and WOFF2 from xi52mono SFD files.
 """
 
 import fontforge
@@ -18,12 +11,12 @@ from datetime import datetime
 
 # Paths
 script_dir = Path(__file__).parent
-pff_root = script_dir.parent.parent.parent  # generatefonts/ is 2 levels deeper than xi52py/'s other scripts
+pff_root = script_dir.parent.parent
 
 # Log
 log_dir = pff_root / "logs"
 log_dir.mkdir(exist_ok=True)
-log_file = log_dir / "generate_xi38utf_ttf.log"
+log_file = log_dir / "generate_mono_ttf.log"
 
 logging.basicConfig(
     filename=str(log_file),
@@ -35,27 +28,27 @@ console = logging.StreamHandler()
 console.setLevel(logging.WARNING)
 logging.getLogger('').addHandler(console)
 
-# UTF folder (source)
-utf_dir = pff_root / "sfd/38/utf"
+# Mono folder
+mono_dir = pff_root / "sfd/52/mono"
 
 # Output
-ttf_dir = pff_root / "xnglofonts/ttf/xi38ttf/xi38utf"
-woff2_dir = pff_root / "xnglofonts/woff2/xi38woff2/xi38utf"
+ttf_dir = pff_root / "xnglofonts/ttf/52/mono"
+woff2_dir = pff_root / "xnglofonts/woff2/52/mono"
 ttf_dir.mkdir(parents=True, exist_ok=True)
 woff2_dir.mkdir(parents=True, exist_ok=True)
 
 FONTS = [
-    'xh38utf.sfd',
-    'xb38utf.sfd',
-    'xp38utf.sfd',
-    'xg38utf.sfd',
-    'xo38utf.sfd',
-    'xt38utf.sfd',
-    'xj38utf.sfd',
-    'xk38utf.sfd',
-    'xm38utf.sfd',
-    'xs38utf.sfd',
-    'xe38utf.sfd',
+    'xh52mono.sfd',
+    'xb52mono.sfd',
+    'xp52mono.sfd',
+    'xg52mono.sfd',
+    'xo52mono.sfd',
+    'xt52mono.sfd',
+    'xj52mono.sfd',
+    'xk52mono.sfd',
+    'xm52mono.sfd',
+    'xs52mono.sfd',
+    'xe52mono.sfd',
 ]
 
 
@@ -70,23 +63,23 @@ def generate_fonts(sfd_path):
     try:
         font = fontforge.open(str(sfd_path))
 
-        base_name = sfd_path.stem  # e.g. xh38utf
+        base_name = sfd_path.stem
 
-        # Generate TTF
+        # TTF
         ttf_path = ttf_dir / f"{base_name}.ttf"
         font.generate(str(ttf_path))
-        logging.info(f"  \u2713 TTF: {ttf_path.name}")
+        logging.info(f"  ✓ TTF: {ttf_path.name}")
 
-        # Generate WOFF2
+        # WOFF2
         woff2_path = woff2_dir / f"{base_name}.woff2"
         font.generate(str(woff2_path))
-        logging.info(f"  \u2713 WOFF2: {woff2_path.name}")
+        logging.info(f"  ✓ WOFF2: {woff2_path.name}")
 
         font.close()
         return True
 
     except Exception as e:
-        logging.error(f"  \u2717 Error: {e}")
+        logging.error(f"  ✗ Error: {e}")
         return False
 
 
@@ -95,12 +88,12 @@ def main():
     logging.info(f"Started: {datetime.now()}")
 
     for font_name in FONTS:
-        sfd_path = utf_dir / font_name
+        sfd_path = mono_dir / font_name
         generate_fonts(sfd_path)
 
     logging.info("=" * 60)
     logging.info(f"Finished: {datetime.now()}")
-    print(f"\n\u2713 Done! Logs: {log_file}")
+    print(f"\n✓ Done! Logs: {log_file}")
 
 
 if __name__ == "__main__":

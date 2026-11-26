@@ -80,8 +80,8 @@ glyphs. So:
 
 ## Files involved
 
-- `pysk/xi52py/glyph_copy/build_utf_fonts.py` — main builder
-- `pysk/xi52py/glyph_copy/build_sinhala_asc.py` — builds
+- `pysk/utfpy/glyph_copy/build_utf_fonts.py` — main builder
+- `pysk/utfpy/glyph_copy/build_sinhala_asc.py` — builds
   `xs38asc.sfd` from Noto Sinhala + English
 - `UNICODE_HINDI_ARRAY` — 128-entry offset → ASCII char map
   (Hindi-based, shared by 9 ranges)
@@ -102,3 +102,5 @@ A single `utf` file lets a reader of one script read Unicode text
 from **all 11 scripts**, rendered in the script they know. No
 translation, no glyph substitution by the renderer — everything is
 baked into the font's character map.
+
+<!-- fine_tune_by_claude -->

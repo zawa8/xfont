@@ -5,7 +5,7 @@ characters comes from in `xi52asc` and `xi38asc` builds.
 
 ## Master sources (designer-maintained)
 
-`sfdsrc/xi52/xe52asc.sfd` and `sfdsrc/xi38/xe38asc.sfd` are **very
+`sfdsrc/52asc/xe52asc.sfd` and `sfdsrc/38asc/xe38asc.sfd` are **very
 important master sources** for every designer. Python scripts must
 **not** create or modify them — only the designer edits these.
 
@@ -29,10 +29,10 @@ easy for the current maintainer because they know Hindi glyphs.
 | 1.1.6 | `L Y V W P F`            | 6 | no design change, only copied once |
 | 1.1.7 | `E I O U M X`            | 6 | no design change, only copied once |
 
-### 1.2 From `sfdsrc/xi52/(xh52asc / xb52asc / ...)` — 20 chars
+### 1.2 From `sfdsrc/52asc/(xh52asc / xb52asc / ...)` — 20 chars
 
-Source: `sfdsrc/xi52/<script>52asc.sfd`
-Target: `sfd/xi52sfd/xi52asc/<script>52asc.sfd`
+Source: `sfdsrc/52asc/<script>52asc.sfd`
+Target: `sfd/52/asc/<script>52asc.sfd`
 
 | Group | Chars | Count | Status |
 |-------|-------|-------|--------|
@@ -51,10 +51,10 @@ Target: `sfd/xi52sfd/xi52asc/<script>52asc.sfd`
 | 2.1.3 | `L Y V W P F` | 6 | no design change, only copied once |
 | 2.1.4 | `E I O U M X` | 6 | no design change, only copied once |
 
-### 2.2 From `sfdsrc/xi38/(xh38asc / xb38asc / ...)` — 32 chars
+### 2.2 From `sfdsrc/38asc/(xh38asc / xb38asc / ...)` — 32 chars
 
-Source: `sfdsrc/xi38/<script>38asc.sfd`
-Target: `sfd/xi38sfd/xi38asc/<script>38asc.sfd`
+Source: `sfdsrc/38asc/<script>38asc.sfd`
+Target: `sfd/38/asc/<script>38asc.sfd`
 
 | Group | Chars | Count | Status |
 |-------|-------|-------|--------|
@@ -80,3 +80,5 @@ Target: `sfd/xi38sfd/xi38asc/<script>38asc.sfd`
 | `glyph_copy_xi52.csv` | 32 (`xe52`) | 20 |
 
 Note: `T` and `D` get the same treatment (`ownsfd,replace`).
+
+<!-- fine_tune_by_claude -->

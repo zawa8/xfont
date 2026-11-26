@@ -59,9 +59,9 @@ duxl(duAl) wisuxl(visuAl) glyphs of j,q,v,x in xi52/xi38/x4i:
     │   ├── *.csv         glyph copy maps
     │   └── *.md          documentation
     ├── sfd/              ← TARGETS (rebuilt by pipeline)
-    │   ├── xi38sfd/      xi38 targets (asc, utf, mono)
-    │   └── xi52sfd/      xi52 targets (asc, utf, mono)
-    ├── notofonts/        Noto TTFs (fallback)
+    │   ├── 38/           xi38 targets (asc, utf, mono)
+    │   └── 52/           xi52 targets (asc, utf, mono)
+    ├── pysk/notopy/        Noto TTFs (fallback)
     ├── pysk/             pipeline scripts
     └── xnglofonts/       TTF/WOFF2 outputs
 
@@ -144,26 +144,26 @@ Latest: [v1.6.0](https://github.com/zawa8/pff/releases/tag/v1.6.0)
 
 1. Open a source in FontForge:
    - `sfdsrc/xe52/xe52asc.sfd` (English master)
-   - `sfdsrc/xi38/xh38asc.sfd` (Hindi source, example)
+   - `sfdsrc/38asc/xh38asc.sfd` (Hindi source, example)
 2. Edit glyphs
 3. Save `.sfd`
 4. Run pipeline (or Ctrl+G in FontForge to generate TTF/WOFF2 directly)
 
-Per-script sources live in `sfdsrc/xi38/` (e.g. `xb38asc.sfd` for
+Per-script sources live in `sfdsrc/38asc/` (e.g. `xb38asc.sfd` for
 Bengali). Pipeline reads them directly — no intermediate copy.
 
 ## Sources (never overwritten)
 
 - `sfdsrc/xe52/xe52asc.sfd` — English master
-- `sfdsrc/xi38/*.sfd` — per-script sources (Hindi, Bengali, ..., Sinhala)
-- `notofonts/*.ttf` — Noto fallback
+- `sfdsrc/38asc/*.sfd` — per-script sources (Hindi, Bengali, ..., Sinhala)
+- `pysk/notopy/*.ttf` — Noto fallback
 
 Python reads `sfdsrc/` directly (no copy into `sfd/`).
 
 ## Outputs
 
-- `xnglofonts/ttf/xi38ttf/{xi38asc,xi38utf,xi38mono}/` — TTF files
-- `xnglofonts/ttf/xi52ttf/{xi52asc,xi52utf,xi52mono}/` — TTF files
+- `xnglofonts/ttf/38/{asc,utf,mono}/` — TTF files
+- `xnglofonts/ttf/52/{asc,utf,mono}/` — TTF files
 - `xnglofonts/woff2/.../`                              — WOFF2 (same layout)
 
 Fonts are tracked in-repo so users can download directly from
@@ -221,11 +221,11 @@ Versioned URLs (immutable, fast, global):
 
 Always-latest (main branch):
 
-    https://cdn.jsdelivr.net/gh/zawa8/pff@main/xnglofonts/woff2/xi38woff2/xi38asc/xh38asc.woff2
+    https://cdn.jsdelivr.net/gh/zawa8/pff@main/xnglofonts/woff2/38/asc/xh38asc.woff2
 
 ### Direct from GitHub
 
-    https://raw.githubusercontent.com/zawa8/pff/main/xnglofonts/ttf/xi38ttf/xi38asc/xh38asc.ttf
+    https://raw.githubusercontent.com/zawa8/pff/main/xnglofonts/ttf/38/asc/xh38asc.ttf
 
 Versioned with git tags (`v1.3.1`, etc.).
 
@@ -237,3 +237,5 @@ Versioned with git tags (`v1.3.1`, etc.).
            url('https://cdn.jsdelivr.net/gh/zawa8/pff@v1.3.1/xnglofonts/ttf/xi38ttf/xi38asc/xh38asc.ttf') format('truetype');
       font-display: swap;
     }
+
+<!-- fine_tune_by_claude -->

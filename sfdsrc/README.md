@@ -23,7 +23,7 @@ Master sources for the xi52/xi38 font pipeline.
 ## Pipeline
 
 Sources here are never overwritten. Pipeline reads from here,
-writes to `sfd/xi38sfd/` and `sfd/xi52sfd/`.
+writes to `sfd/38/` and `sfd/52/`.
 
 ## Naming
 
@@ -42,5 +42,7 @@ See `pysk/designer_workflow.md` for the full 4-step workflow.
 
 ## Noto fallback
 
-Noto TTFs (in `notofonts/`) are used only when a glyph is not
+Noto TTFs (in `pysk/notopy/`) are used only when a glyph is not
 present in this folder.
+
+<!-- fine_tune_by_claude -->

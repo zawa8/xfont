@@ -1,5 +1,6 @@
 #!/usr/bin/env fontforge
 # -*- coding: utf-8 -*-
+# fine_tune_by_claude
 """
 prep_utf.py  —  pipeline 2: utf preparation
 

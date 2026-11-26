@@ -29,7 +29,7 @@ All designer files live in `sfdsrc/` — one folder for everything.
 
 Open a source in FontForge:
 - `sfdsrc/xe52/xe52asc.sfd` (English master)
-- `sfdsrc/xi38/xh38asc.sfd` (Hindi, example)
+- `sfdsrc/38asc/xh38asc.sfd` (Hindi, example)
 
 Edit glyphs. Save `.sfd`.
 
@@ -80,8 +80,8 @@ Example:
 ### Step 4 — Review `xnglofonts/`
 
 Open generated TTF in font viewer / browser:
-- `xnglofonts/ttf/xi38ttf/xi38asc/xh38asc.ttf`
-- `xnglofonts/ttf/xi52ttf/xi52asc/xh52asc.ttf`
+- `xnglofonts/ttf/38/asc/xh38asc.ttf`
+- `xnglofonts/ttf/52/asc/xh52asc.ttf`
 - etc.
 
 Test strings:
@@ -107,10 +107,12 @@ These are maintained by the pipeline, not designers:
 - `sfd/`        — targets (regenerated each run)
 - `xnglofonts/` — generated TTF/WOFF2 (regenerated)
 - `scripts/`    — pipeline code (ask before editing)
-- `notofonts/`  — Noto fallback (external)
+- `pysk/notopy/`  — Noto fallback (external)
 
 ## Roles
 
 - **Designer (you):** `sfdsrc/*.sfd` + `sfdsrc/*.csv`
 - **Python:** reads `sfdsrc/` + CSV → writes `sfd/` → `xnglofonts/`
 - **Never decide** in python — only execute
+
+<!-- fine_tune_by_claude -->

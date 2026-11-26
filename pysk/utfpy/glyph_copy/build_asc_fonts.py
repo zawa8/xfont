@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
 build_asc_fonts.py
 
@@ -9,7 +10,7 @@ source/action from per-family CSVs: glyph_copy_xi38.csv and glyph_copy_xi52.csv
 Sources:
   - xe52asc.sfd            (English master, from sfdsrc/xe52)
   - xe38asc.sfd            (English xi38)
-  - xh38asc.sfd             (Hindi source, from sfdsrc/xi38)
+  - xh38asc.sfd             (Hindi source, from sfdsrc/38asc)
   - NotoSansMath-Regular.ttf     (EIOUMX symbols)
   - NotoSans{Script}-Regular.ttf (Indic consonants)
 
@@ -43,12 +44,12 @@ console = logging.StreamHandler()
 console.setLevel(logging.WARNING)
 logging.getLogger('').addHandler(console)
 
-# Sources: sfdsrc/ (designer-maintained), notofonts/
-ENGLISH_52   = pff_root / "sfdsrc/xi52/xe52asc.sfd"
-ENGLISH_38   = pff_root / "sfdsrc/xi38/xe38asc.sfd"
-SFDSRC_XI38  = pff_root / "sfdsrc/xi38"
-SFDSRC_XI52  = pff_root / "sfdsrc/xi52"
-NOTO_MATH    = pff_root / "notofonts/NotoSansMath-Regular.ttf"
+# Sources: sfdsrc/ (designer-maintained), pysk/notopy/
+ENGLISH_52   = pff_root / "sfdsrc/52asc/xe52asc.sfd"
+ENGLISH_38   = pff_root / "sfdsrc/38asc/xe38asc.sfd"
+SFDSRC_XI38  = pff_root / "sfdsrc/38asc"
+SFDSRC_XI52  = pff_root / "sfdsrc/52asc"
+NOTO_MATH    = pff_root / "pysk/notopy/NotoSansMath-Regular.ttf"
 SFDSRC_ROOT  = pff_root / "sfdsrc"
 CSV_PATH_38  = SFDSRC_ROOT / "glyph_copy_xi38.csv"
 CSV_PATH_52  = SFDSRC_ROOT / "glyph_copy_xi52.csv"
@@ -224,7 +225,7 @@ def process_script(name, cfg, csv_rows_38, csv_rows_52, sources):
     script_src_path = SFDSRC_XI38 / cfg["sfd38"]
     if not script_src_path.exists():
         raise FileNotFoundError(
-            f"{name}: sfdsrc/xi38/{cfg['sfd38']} not found. "
+            f"{name}: sfdsrc/38asc/{cfg['sfd38']} not found. "
             f"Designer must prepare it first (copy from sfd/ if needed)."
         )
     # Reuse already-open source font to avoid double-open (FontForge
@@ -240,7 +241,7 @@ def process_script(name, cfg, csv_rows_38, csv_rows_52, sources):
     script_src_path_52 = SFDSRC_XI52 / cfg["sfd52"]
     if not script_src_path_52.exists():
         raise FileNotFoundError(
-            f"{name}: sfdsrc/xi52/{cfg['sfd52']} not found. "
+            f"{name}: sfdsrc/52asc/{cfg['sfd52']} not found. "
             f"Designer must prepare it first."
         )
     if name == "english" and sources.get("xe52") is not None:
@@ -253,7 +254,7 @@ def process_script(name, cfg, csv_rows_38, csv_rows_52, sources):
     # notoindik is optional (english/xe38 has no Noto source)
     noto_font = None
     if cfg.get("notoindik"):
-        noto_path = pff_root / "notofonts" / cfg["notoindik"]
+        noto_path = pff_root / "pysk" / "notopy" / cfg["notoindik"]
         if not noto_path.exists():
             logging.error(f"notoindik source not found: {noto_path}")
             script_font.close()

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
 build_utf_fonts.py
 
@@ -16,7 +17,7 @@ Unicode text in a script they know.
 
 See scripts/utf_design.md for the full philosophy.
 
-TTF/WOFF2 generation is separate (pysk/xi52py/generatefonts/gen_xi38utf.py).
+TTF/WOFF2 generation is separate (pysk/ttfwofpy/generatefonts/gen_xi38utf.py).
 
 Run via main.py:
     fontforge -script pysk/utfpy/main.py --phase utf

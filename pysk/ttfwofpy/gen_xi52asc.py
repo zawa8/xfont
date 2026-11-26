@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
-Generate TTF and WOFF2 from xi38asc SFD files.
+Generate TTF and WOFF2 from xi52asc SFD files.
 """
 
 import fontforge
@@ -14,7 +15,7 @@ pff_root = script_dir.parent.parent
 # Log
 log_dir = pff_root / "logs"
 log_dir.mkdir(exist_ok=True)
-log_file = log_dir / "generate_xi38asc.log"
+log_file = log_dir / "generate_xi52asc.log"
 
 logging.basicConfig(
     filename=str(log_file),
@@ -26,29 +27,29 @@ console = logging.StreamHandler()
 console.setLevel(logging.WARNING)
 logging.getLogger('').addHandler(console)
 
-# Source: xi38asc SFD
-sfd_dir = pff_root / "sfd/38/asc"
+# Source: xi52asc SFD
+sfd_dir = pff_root / "sfd/52/asc"
 
-# Output: xi38asc TTF
-ttf_dir = pff_root / "xnglofonts/ttf/xi38ttf/xi38asc"
+# Output: xi52asc TTF
+ttf_dir = pff_root / "xnglofonts/ttf/52/asc"
 ttf_dir.mkdir(parents=True, exist_ok=True)
 
-# Output: xi38asc WOFF2
-woff2_dir = pff_root / "xnglofonts/woff2/xi38woff2/xi38asc"
+# Output: xi52asc WOFF2
+woff2_dir = pff_root / "xnglofonts/woff2/52/asc"
 woff2_dir.mkdir(parents=True, exist_ok=True)
 
 FONTS = [
-    'xh38asc.sfd',
-    'xb38asc.sfd',
-    'xp38asc.sfd',
-    'xg38asc.sfd',
-    'xo38asc.sfd',
-    'xt38asc.sfd',
-    'xj38asc.sfd',
-    'xk38asc.sfd',
-    'xm38asc.sfd',
-    'xs38asc.sfd',
-    'xe38asc.sfd',
+    'xh52asc.sfd',
+    'xb52asc.sfd',
+    'xp52asc.sfd',
+    'xg52asc.sfd',
+    'xo52asc.sfd',
+    'xt52asc.sfd',
+    'xj52asc.sfd',
+    'xk52asc.sfd',
+    'xm52asc.sfd',
+    'xs52asc.sfd',
+    'xe52asc.sfd',
 ]
 
 

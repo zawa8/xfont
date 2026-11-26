@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
-Generate TTF and WOFF2 from xi52asc SFD files.
+Generate TTF and WOFF2 from xi52utf SFD files.
 """
 
 import fontforge
@@ -8,13 +9,14 @@ import logging
 from pathlib import Path
 from datetime import datetime
 
+# Paths
 script_dir = Path(__file__).parent
-pff_root = script_dir.parent.parent
+pff_root = script_dir.parent.parent.parent  # generatefonts/ is one level deeper than its siblings
 
 # Log
 log_dir = pff_root / "logs"
 log_dir.mkdir(exist_ok=True)
-log_file = log_dir / "generate_xi52asc.log"
+log_file = log_dir / "generate_xi52_ttf.log"
 
 logging.basicConfig(
     filename=str(log_file),
@@ -26,29 +28,27 @@ console = logging.StreamHandler()
 console.setLevel(logging.WARNING)
 logging.getLogger('').addHandler(console)
 
-# Source: xi52asc SFD
-sfd_dir = pff_root / "sfd/52/asc"
+# UTF folder
+utf_dir = pff_root / "sfd/52/utf"
 
-# Output: xi52asc TTF
-ttf_dir = pff_root / "xnglofonts/ttf/xi52ttf/xi52asc"
+# Output
+ttf_dir = pff_root / "xnglofonts/ttf/52/utf"
+woff2_dir = pff_root / "xnglofonts/woff2/52/utf"
 ttf_dir.mkdir(parents=True, exist_ok=True)
-
-# Output: xi52asc WOFF2
-woff2_dir = pff_root / "xnglofonts/woff2/xi52woff2/xi52asc"
 woff2_dir.mkdir(parents=True, exist_ok=True)
 
 FONTS = [
-    'xh52asc.sfd',
-    'xb52asc.sfd',
-    'xp52asc.sfd',
-    'xg52asc.sfd',
-    'xo52asc.sfd',
-    'xt52asc.sfd',
-    'xj52asc.sfd',
-    'xk52asc.sfd',
-    'xm52asc.sfd',
-    'xs52asc.sfd',
-    'xe52asc.sfd',
+    'xh52utf.sfd',
+    'xb52utf.sfd',
+    'xp52utf.sfd',
+    'xg52utf.sfd',
+    'xo52utf.sfd',
+    'xt52utf.sfd',
+    'xj52utf.sfd',
+    'xk52utf.sfd',
+    'xm52utf.sfd',
+    'xs52utf.sfd',
+    'xe52utf.sfd',
 ]
 
 
@@ -62,14 +62,15 @@ def generate_fonts(sfd_path):
 
     try:
         font = fontforge.open(str(sfd_path))
+
         base_name = sfd_path.stem
 
-        # TTF
+        # Generate TTF
         ttf_path = ttf_dir / f"{base_name}.ttf"
         font.generate(str(ttf_path))
         logging.info(f"  ✓ TTF: {ttf_path.name}")
 
-        # WOFF2
+        # Generate WOFF2
         woff2_path = woff2_dir / f"{base_name}.woff2"
         font.generate(str(woff2_path))
         logging.info(f"  ✓ WOFF2: {woff2_path.name}")
@@ -87,7 +88,7 @@ def main():
     logging.info(f"Started: {datetime.now()}")
 
     for font_name in FONTS:
-        sfd_path = sfd_dir / font_name
+        sfd_path = utf_dir / font_name
         generate_fonts(sfd_path)
 
     logging.info("=" * 60)

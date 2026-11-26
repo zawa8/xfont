@@ -1,57 +1,60 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
-generate_mono_ttf_xi38.py
-
-Generate TTF and WOFF2 from xi38mono SFD files.
-
-Mirrors generate_mono_ttf.py (for xi52mono).
+Generate TTF and WOFF2 from xi38asc SFD files.
 """
 
 import fontforge
 import logging
-from datetime import datetime
 from pathlib import Path
+from datetime import datetime
 
 script_dir = Path(__file__).parent
 pff_root = script_dir.parent.parent
 
+# Log
 log_dir = pff_root / "logs"
 log_dir.mkdir(exist_ok=True)
-log_file = log_dir / "generate_mono_ttf_xi38.log"
+log_file = log_dir / "generate_xi38asc.log"
 
 logging.basicConfig(
     filename=str(log_file),
     level=logging.DEBUG,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    filemode="w",
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    filemode='w'
 )
 console = logging.StreamHandler()
 console.setLevel(logging.WARNING)
-logging.getLogger("").addHandler(console)
+logging.getLogger('').addHandler(console)
 
-mono_dir = pff_root / "sfd/38/mono"
+# Source: xi38asc SFD
+sfd_dir = pff_root / "sfd/38/asc"
 
-ttf_dir = pff_root / "xnglofonts/ttf/xi38ttf/xi38mono"
-woff2_dir = pff_root / "xnglofonts/woff2/xi38woff2/xi38mono"
+# Output: xi38asc TTF
+ttf_dir = pff_root / "xnglofonts/ttf/38/asc"
 ttf_dir.mkdir(parents=True, exist_ok=True)
+
+# Output: xi38asc WOFF2
+woff2_dir = pff_root / "xnglofonts/woff2/38/asc"
 woff2_dir.mkdir(parents=True, exist_ok=True)
 
 FONTS = [
-    "xh38mono.sfd",
-    "xb38mono.sfd",
-    "xp38mono.sfd",
-    "xg38mono.sfd",
-    "xo38mono.sfd",
-    "xt38mono.sfd",
-    "xj38mono.sfd",
-    "xk38mono.sfd",
-    "xm38mono.sfd",
-    "xs38mono.sfd",
-    "xe38mono.sfd",
+    'xh38asc.sfd',
+    'xb38asc.sfd',
+    'xp38asc.sfd',
+    'xg38asc.sfd',
+    'xo38asc.sfd',
+    'xt38asc.sfd',
+    'xj38asc.sfd',
+    'xk38asc.sfd',
+    'xm38asc.sfd',
+    'xs38asc.sfd',
+    'xe38asc.sfd',
 ]
 
 
 def generate_fonts(sfd_path):
+    """Generate TTF and WOFF2 from SFD."""
     if not sfd_path.exists():
         logging.error(f"Not found: {sfd_path}")
         return False
@@ -62,18 +65,21 @@ def generate_fonts(sfd_path):
         font = fontforge.open(str(sfd_path))
         base_name = sfd_path.stem
 
+        # TTF
         ttf_path = ttf_dir / f"{base_name}.ttf"
         font.generate(str(ttf_path))
-        logging.info(f"  TTF: {ttf_path.name}")
+        logging.info(f"  ✓ TTF: {ttf_path.name}")
 
+        # WOFF2
         woff2_path = woff2_dir / f"{base_name}.woff2"
         font.generate(str(woff2_path))
-        logging.info(f"  WOFF2: {woff2_path.name}")
+        logging.info(f"  ✓ WOFF2: {woff2_path.name}")
 
         font.close()
         return True
+
     except Exception as e:
-        logging.error(f"  Error: {e}")
+        logging.error(f"  ✗ Error: {e}")
         return False
 
 
@@ -82,12 +88,12 @@ def main():
     logging.info(f"Started: {datetime.now()}")
 
     for font_name in FONTS:
-        sfd_path = mono_dir / font_name
+        sfd_path = sfd_dir / font_name
         generate_fonts(sfd_path)
 
     logging.info("=" * 60)
     logging.info(f"Finished: {datetime.now()}")
-    print(f"\nDone! Logs: {log_file}")
+    print(f"\n✓ Done! Logs: {log_file}")
 
 
 if __name__ == "__main__":

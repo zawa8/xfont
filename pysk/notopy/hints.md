@@ -1,7 +1,7 @@
 # Refcopy hint format — `sfdsrc/asc-to-utf-generated.csv`
 
 `sfdsrc/asc-to-utf-generated.csv` is **auto-generated** by
-`notofonts/fill_asc-to-utf-csv.py` from local Noto fonts. The generated
+`pysk/notopy/fill_asc-to-utf-csv.py` from local Noto fonts. The generated
 data rows contain only `?` (glyph present, refcopy undecided) or
 `clear` (no glyph). The final refcopy decisions live in **manual hint
 lines** written by the designer, which the script re-applies on every
@@ -132,6 +132,8 @@ before rewriting. Backups of the previous CSV are safe to delete
 | Symptom | Fix |
 |---|---|
 | `TypeError: open() takes no keyword arguments` | use `ffz -script fill_asc-to-utf-csv.py`, not `ffz -c` |
-| `0D9A=KAYANNA` in auto-hint | `notofonts/NamesList.txt` missing — download from `https://www.unicode.org/Public/18.0.0/ucd/NamesList.txt` |
+| `0D9A=KAYANNA` in auto-hint | `pysk/notopy/NamesList.txt` missing — download from `https://www.unicode.org/Public/18.0.0/ucd/NamesList.txt` |
 | Manual hint not applied | check `#NN,` prefix, 10 comma-separated fields, valid Latin first char |
 | `empty` cell still shows `?` | make sure the field text is exactly `empty` (lowercase) |
+
+<!-- fine_tune_by_claude -->

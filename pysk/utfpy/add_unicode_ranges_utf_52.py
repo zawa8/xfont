@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
 Script to add Unicode ranges with copyReference to xi52utf SFD files.
 """

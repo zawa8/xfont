@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
+# fine_tune_by_claude
 """
-Script to create xi52mono fonts by copying xi52utf fonts,
-changing names, and making first 128 chars monospace.
+Script to create xi52utf fonts by copying xi38utf fonts
+and changing font names (38utf → 52utf).
+
+References are already in xi38utf, no need to add again.
 """
 
 import fontforge
@@ -16,7 +19,7 @@ pff_root = script_dir.parent.parent
 # Log
 log_dir = pff_root / "logs"
 log_dir.mkdir(exist_ok=True)
-log_file = log_dir / "copy_utf_to_mono_xi52.log"
+log_file = log_dir / "copy_xi38utf_to_xi52utf.log"
 
 logging.basicConfig(
     filename=str(log_file),
@@ -28,48 +31,31 @@ console = logging.StreamHandler()
 console.setLevel(logging.WARNING)
 logging.getLogger('').addHandler(console)
 
-# Source (xi52utf)
-src_dir = pff_root / "sfd/52/utf"
+# Source (xi38utf)
+src_dir = pff_root / "sfd/38/utf"
 
-# Target (xi52mono)
-target_dir = pff_root / "sfd/52/mono"
+# Target (xi52utf)
+target_dir = pff_root / "sfd/52/utf"
 target_dir.mkdir(parents=True, exist_ok=True)
 
 # Font mappings: (src_file, old_name, new_name)
 FONTS = [
-    ('xh52utf.sfd',    'xh52utf',    'xh52mono'),
-    ('xb52utf.sfd',  'xb52utf',  'xb52mono'),
-    ('xp52utf.sfd',   'xp52utf',   'xp52mono'),
-    ('xg52utf.sfd',  'xg52utf',  'xg52mono'),
-    ('xo52utf.sfd',    'xo52utf',    'xo52mono'),
-    ('xt52utf.sfd',     'xt52utf',     'xt52mono'),
-    ('xj52utf.sfd',   'xj52utf',   'xj52mono'),
-    ('xk52utf.sfd',     'xk52utf',     'xk52mono'),
-    ('xm52utf.sfd',  'xm52utf',  'xm52mono'),
-    ('xs52utf.sfd',   'xs52utf',   'xs52mono'),
-    ('xe52utf.sfd',   'xe52utf',   'xe52mono'),
+    ('xh38utf.sfd',    'xh38utf',    'xh52utf'),
+    ('xb38utf.sfd',  'xb38utf',  'xb52utf'),
+    ('xp38utf.sfd',   'xp38utf',   'xp52utf'),
+    ('xg38utf.sfd',  'xg38utf',  'xg52utf'),
+    ('xo38utf.sfd',    'xo38utf',    'xo52utf'),
+    ('xt38utf.sfd',     'xt38utf',     'xt52utf'),
+    ('xj38utf.sfd',   'xj38utf',   'xj52utf'),
+    ('xk38utf.sfd',     'xk38utf',     'xk52utf'),
+    ('xm38utf.sfd',  'xm38utf',  'xm52utf'),
+    ('xs38utf.sfd',   'xs38utf',   'xs52utf'),
+    ('xe38utf.sfd',   'xe38utf',   'xe52utf'),
 ]
-
-# Monospace width
-MONO_WIDTH = 600  # Adjust as needed
-
-
-def make_monospace(font):
-    """Make first 128 characters same width."""
-    for ascii_code in range(128):
-        if ascii_code not in font:
-            continue
-        try:
-            glyph = font[ascii_code]
-            if glyph:
-                glyph.width = MONO_WIDTH
-                logging.debug(f"    Set width {MONO_WIDTH} for ASCII {ascii_code}")
-        except Exception as e:
-            logging.warning(f"    Error setting width {ascii_code}: {e}")
 
 
 def copy_font(src_name, old_name, new_name):
-    """Copy xi52utf font to xi52mono with new name and monospace."""
+    """Copy xi38utf font to xi52utf with new name."""
     src_path = src_dir / src_name
     target_path = target_dir / f"{new_name}.sfd"
 
@@ -88,10 +74,6 @@ def copy_font(src_name, old_name, new_name):
         font.fullname = new_name
         font.familyname = new_name
         font.weight = "Regular"
-
-        # Make monospace
-        logging.info(f"  Making first 128 chars monospace (width={MONO_WIDTH})")
-        make_monospace(font)
 
         # Save to target
         font.save(str(target_path))
@@ -117,7 +99,6 @@ def main():
     logging.info(f"Started: {datetime.now()}")
     logging.info(f"Source: {src_dir}")
     logging.info(f"Target: {target_dir}")
-    logging.info(f"Mono width: {MONO_WIDTH}")
 
     for src_name, old_name, new_name in FONTS:
         copy_font(src_name, old_name, new_name)
